@@ -11,8 +11,5 @@ class IisprojectSkill : Skill() {
 }
 
 fun main(args: Array<String>) {
-    val test: Int = read()
-    println(test)
-
     Skill.main(args)
 }
