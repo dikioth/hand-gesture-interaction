@@ -5,6 +5,7 @@ import random #TODO remove after changing get_hand_gesture()
 # This function handles all hand recognition and returns an int between 0-5 representing a hand gesture. 
 # TODO Change function to handle hand recognition instead of returning a random int. 
 def get_hand_gesture():
+    #return 6
     return random.randint(0, 5) 
 
 
@@ -14,18 +15,25 @@ def main(file_name):
     
     while True:
         try:
-            file_check = os.path.isfile(file_name)
+            try:
+                file_check = os.path.isfile(file_name)
+            except:
+                file_check = False
+
             if file_check:
-                f = open(file_name, "r")
-                first_line = f.readline().strip()
-                f.close()
-                
-                if first_line == "1":
-                    hand_gesture = get_hand_gesture()
-                    f = open(file_name, "w")
-                    f.write("0\n" + str(hand_gesture))
+                try:
+                    f = open(file_name, "r")
+                    first_line = f.readline().strip()
                     f.close()
-                    print("Writing hand gesture " + str(hand_gesture) + " to file.")
+                
+                    if first_line == "1":
+                        hand_gesture = get_hand_gesture()
+                        f = open(file_name, "w")
+                        f.write("0\n" + str(hand_gesture))
+                        f.close()
+                        print("Writing hand gesture " + str(hand_gesture) + " to file.")
+                except:
+                    time.sleep(0.4)
             else:
                 time.sleep(0.4)
 
