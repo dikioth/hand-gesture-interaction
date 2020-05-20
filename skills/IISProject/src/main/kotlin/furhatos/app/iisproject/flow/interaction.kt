@@ -46,25 +46,41 @@ val Default : State = state(Interaction) {
                 }
                 3 -> {
                     println("3")
-                    furhat.gesture(Gestures.ExpressFear(duration = 2.0, strength = 1.0))
+                    furhat.gesture(Gestures.ExpressFear(duration = 1.0, strength = 1.0))
                     furhat.say("Are you threatening me?")
                     goto(Confrontation)
                 }
                 4 -> {
                     println("4")
-                    furhat.say("That kind of looks like a scissor, don't you think?")
-                    goto(Game)
+                    random (
+                            { furhat.say("That kind of looks like a scissor, don't you think?")
+                                goto(Game)
+                            },
+                            { furhat.say("Oh, did you want to play a game of rock, paper, scissors?")
+                                if (!choice()) {
+                                    goto(Game)
+                                }
+                            }
+                    )
                 }
                 5 -> {
                     println("5")
-                    furhat.say("What does that mean?")
-                    goto(gotoDef)
+                    random (
+                            { furhat.say("That kind of looks like a scissor, don't you think?")
+                                goto(Game)
+                            },
+                            { furhat.say("Oh, did you want to play a game of rock, paper, scissors?")
+                                if (!choice()) {
+                                    goto(Game)
+                                }
+                            }
+                    )
                 }
                 else -> { // Note the block
                     print("no action")
                     random (
                             { furhat.say("Maybe I need glasses, but I don't seem to see your hands properly.")},
-                            { furhat.say("I don't have any hands, could you show me yours?")},
+                            { furhat.say("I can't hear anything today, maybe you can try showing me with your hands.")},
                             { furhat.say("You probably cant see it, but I'm waving at you, maybe you could try waving back at me?")},
                             { furhat.say("I'm sorry, but I don't seem to understand what you are trying to say, could you try showing me again?")}
                     )
@@ -82,11 +98,13 @@ val Default : State = state(Interaction) {
     }
 }
 
+
 val gotoDef : State = state(Interaction) {
     onEntry{
         goto(Default)
     }
 }
+
 
 val Confrontation : State = state(Interaction) {
     onEntry {
@@ -152,9 +170,11 @@ val Confrontation : State = state(Interaction) {
     }
 }
 
+
 val Game : State = state(Interaction) {
     onEntry {
-        furhat.say("Lets play rock, paper, scissors.")
+        furhat.gesture(Gestures.BigSmile(duration = 1.0, strength = 1.0))
+        furhat.say("Lets play!")
         furhat.say("Since I don't have any hands I'll just think of a move and tell you who the winner is. You can trust me, I would never cheat.")
 
         val move = (1..6).random()
