@@ -47,3 +47,15 @@ fun read(): Int {
         }
     }
 }
+
+// function returning false if gesture is a closed fist, otherwise true
+fun choice(): Boolean {
+    val gesture = read()
+    var choice = false
+
+    if (gesture != 2 or 3 or 6) {
+        choice = true
+    }
+
+    return choice
+}
