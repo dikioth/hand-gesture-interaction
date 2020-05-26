@@ -6,7 +6,7 @@ import random #TODO remove after changing get_hand_gesture()
 # TODO Change function to handle hand recognition instead of returning a random int. 
 def get_hand_gesture():
     #return 6
-    return random.randint(0, 5) 
+    return random.randint(0, 6) 
 
 
 # main loop, checks if file exists and rewrites it with information about hand gesture. 
