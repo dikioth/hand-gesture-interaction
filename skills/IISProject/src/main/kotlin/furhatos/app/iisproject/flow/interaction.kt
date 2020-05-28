@@ -23,6 +23,7 @@ val Default : State = state(Interaction) {
                 4: Three fingers palm
                 5: Three fingers dorsal
                 6: Failed hand gesture
+                7: New gesture
              */
         when (read()) {
             0 -> {
@@ -73,16 +74,7 @@ val Default : State = state(Interaction) {
                     goto(gotoDef)
                 }
             }
-            else -> { // Note the block
-                println("no action")
-                random (
-                        { furhat.say("Maybe I need glasses, but I don't seem to see your hands properly.")},
-                        { furhat.say("I can't hear anything today, maybe you can try showing me with your hands.")},
-                        { furhat.say("You probably cant see it, but I'm waving at you, maybe you could try waving back at me?")},
-                        { furhat.say("I'm sorry, but I don't seem to understand what you are trying to say, could you try showing me?")}
-                )
-                goto(gotoDef)
-            }
+            else -> goto(gotoDef)
         }
     }
 
@@ -105,7 +97,7 @@ fun choice(): Boolean {
     val gesture = read()
     var choice = false
 
-    if (gesture != 2 or 3 or 6) {
+    if (gesture != 2 or 3) {
         choice = true
     }
 

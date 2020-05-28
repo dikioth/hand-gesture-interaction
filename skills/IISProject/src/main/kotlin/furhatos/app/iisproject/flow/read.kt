@@ -13,6 +13,7 @@ import java.io.File
    4: Three fingers palm
    5: Three fingers dorsal
    6: Failed hand gesture
+   7: No gesture
  */
 fun read(): Int {
     /* Create file to tell python script to write input to file.
@@ -42,7 +43,7 @@ fun read(): Int {
             timeout += 1
             if (timeout == 10) {
                 file.deleteRecursively()
-                return 6
+                return 7
             }
         }
     }
