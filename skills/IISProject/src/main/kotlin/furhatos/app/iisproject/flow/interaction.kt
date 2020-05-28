@@ -10,6 +10,11 @@ val Start : State = state(Interaction) {
         furhat.say("If you need any help, show me the back of your hand.")
         goto(Default)
     }
+
+    onUserLeave {
+        furhat.say ("Goodbye, hope to see you soon again.")
+        goto(Idle)
+    }
 }
 
 // Main interaction loop.
@@ -25,6 +30,7 @@ val Default : State = state(Interaction) {
                 6: Failed hand gesture
                 7: New gesture
              */
+        delay(500)
         when (read()) {
             0 -> {
                 println("0")
@@ -91,6 +97,7 @@ val gotoDef : State = state(Interaction) {
         goto(Default)
     }
 }
+
 
 // function returning false if gesture is a closed fist, otherwise true
 fun choice(): Boolean {

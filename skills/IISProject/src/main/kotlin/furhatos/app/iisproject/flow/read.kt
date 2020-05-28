@@ -43,7 +43,7 @@ fun read(): Int {
             timeout += 1
             if (timeout == 10) {
                 file.deleteRecursively()
-                return 7
+                return 6
             }
         }
     }
