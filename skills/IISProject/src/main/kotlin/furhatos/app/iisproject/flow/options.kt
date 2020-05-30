@@ -3,19 +3,19 @@ package furhatos.app.iisproject.flow
 import furhatos.flow.kotlin.*
 import furhatos.gestures.Gestures
 
-// Option for having a short argument with furhat.
+/*
+    0: Open palm
+    1: Open dorsal
+    2: Fist palm
+    3: Fist dorsal
+    4: Three fingers palm
+    5: Three fingers dorsal
+    6: Failed hand gesture
+ */
+
+// Interaction for having a short argument with Furhat.
 val Confrontation : State = state(Interaction) {
     onEntry {
-        /*
-            0: Open palm
-            1: Open dorsal
-            2: Fist palm
-            3: Fist dorsal
-            4: Three fingers palm
-            5: Three fingers dorsal
-            6: Failed hand gesture
-            7: No gesture
-         */
         when (read()) {
             0 -> {
                 println("0")
@@ -72,7 +72,7 @@ val Confrontation : State = state(Interaction) {
 }
 
 
-// Option for playing one round of rock, paper, scissors.
+// Interaction for playing one round of rock, paper, scissors with Furhat.
 val Game : State = state(Interaction) {
     onEntry {
         furhat.gesture(Gestures.BigSmile(duration = 1.0, strength = 1.0))
@@ -141,7 +141,7 @@ val Game : State = state(Interaction) {
 }
 
 
-// Option for getting help with what hand gestures can be used.
+// Interaction for getting help with what hand gestures can be used with Furhat.
 val Help : State = state(Interaction) {
     onEntry {
         furhat.say("I understand mainly three hand gestures.")

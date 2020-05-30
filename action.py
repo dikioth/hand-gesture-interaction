@@ -2,6 +2,13 @@ import os.path
 import time
 
 # main loop, checks if file exists and rewrites it with information about hand gesture. 
+#   0: Open palm
+#   1: Open dorsal
+#   2: Fist palm
+#   3: Fist dorsal
+#   4: Three fingers palm
+#   5: Three fingers dorsal
+#   6: Failed hand gesture
 def main(file_name):
     print("Starting hand recognition.")
     

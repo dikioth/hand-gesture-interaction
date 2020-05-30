@@ -17,19 +17,19 @@ val Start : State = state(Interaction) {
     }
 }
 
-// Main interaction loop.
+/*
+    0: Open palm
+    1: Open dorsal
+    2: Fist palm
+    3: Fist dorsal
+    4: Three fingers palm
+    5: Three fingers dorsal
+    6: Failed hand gesture
+ */
+
+// Main interaction loop, every interaction should go back to this interaction.
 val Default : State = state(Interaction) {
     onEntry {
-            /*
-                0: Open palm
-                1: Open dorsal
-                2: Fist palm
-                3: Fist dorsal
-                4: Three fingers palm
-                5: Three fingers dorsal
-                6: Failed hand gesture
-                7: New gesture
-             */
         delay(500)
         when (read()) {
             0 -> {
