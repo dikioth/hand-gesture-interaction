@@ -2,7 +2,6 @@ package furhatos.app.iisproject.flow
 
 import java.io.File
 
-
 /* Function for retrieving hand gesture input from python script.
    returns an int 0-6
 
@@ -39,8 +38,9 @@ fun read(): Int {
             Thread.sleep(500L)
 
             // Timeout after testing x amount of times and return faulty option.
+            // Change timeout value to change length of function testing.
             timeout += 1
-            if (timeout == 10) {
+            if (timeout == 5) {
                 file.deleteRecursively()
                 return 6
             }

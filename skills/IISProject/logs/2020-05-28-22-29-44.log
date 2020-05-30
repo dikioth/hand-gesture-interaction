@@ -1,0 +1,4 @@
+22:29:44 [Skill] INFO  Skill:139 - Connecting to Furhat server on 192.168.1.162:1932
+22:29:44 [IisprojectSkill] INFO  IisprojectSkill:173 - Starting skill
+22:30:46 [ErrorLoggingThread] ERROR IisprojectSkill:466 - Flow - unknown - A flow's queue is full, could not add furhatos.event.monitors.MonitorGestureEnd
+

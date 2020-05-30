@@ -3,18 +3,19 @@ package furhatos.app.iisproject.flow
 import furhatos.flow.kotlin.*
 import furhatos.gestures.Gestures
 
-// Option for having a short argument with furhat.
+/*
+    0: Open palm
+    1: Open dorsal
+    2: Fist palm
+    3: Fist dorsal
+    4: Three fingers palm
+    5: Three fingers dorsal
+    6: Failed hand gesture
+ */
+
+// Interaction for having a short argument with Furhat.
 val Confrontation : State = state(Interaction) {
     onEntry {
-        /*
-            0: Open palm
-            1: Open dorsal
-            2: Fist palm
-            3: Fist dorsal
-            4: Three fingers palm
-            5: Three fingers dorsal
-            6: Failed hand gesture
-         */
         when (read()) {
             0 -> {
                 println("0")
@@ -66,19 +67,19 @@ val Confrontation : State = state(Interaction) {
     }
 
     onUserLeave {
-        furhat.say("Yes, maybe it's best you leave and cool down for a while.")
+        furhat.say("Yes, maybe it's best you leave and cool off for a while.")
     }
 }
 
 
-// Option for playing one round of rock, paper, scissors.
+// Interaction for playing one round of rock, paper, scissors with Furhat.
 val Game : State = state(Interaction) {
     onEntry {
         furhat.gesture(Gestures.BigSmile(duration = 1.0, strength = 1.0))
         furhat.say("Lets play rock paper scissors!")
         furhat.say("Since I don't have any hands, I'll just think of a move and tell you who the winner is. You can trust me, I would never cheat.")
 
-        val move = (1..6).random()
+        val move = (1..3).random()
 
         furhat.gesture(Gestures.Thoughtful(duration = 2.0, strength = 1.0))
         furhat.say("Ready?")
@@ -90,12 +91,12 @@ val Game : State = state(Interaction) {
         when (read()) {
             0, 1 -> {
                 when (move) {
-                    0, 1 -> furhat.say("That would be a draw.")
-                    2, 3 -> {
+                    1 -> furhat.say("That would be a draw.")
+                    2 -> {
                         furhat.gesture(Gestures.ExpressSad(duration = 1.0, strength = 1.0))
                         furhat.say("Oh no. You won.")
                     }
-                    4, 5 ->  {
+                    3 ->  {
                         furhat.gesture(Gestures.Surprise(duration = 1.0, strength = 0.5))
                         furhat.say("Oh wow, I think I won.")
                     }
@@ -103,12 +104,12 @@ val Game : State = state(Interaction) {
             }
             2, 3 -> {
                 when (move) {
-                    0, 1 -> {
+                    1 -> {
                         furhat.gesture(Gestures.Surprise(duration = 1.0, strength = 0.5))
                         furhat.say("Oh wow, I think I won.")
                     }
-                    2, 3 -> furhat.say("That would be draw.")
-                    4, 5 ->  {
+                    2 -> furhat.say("That would be draw.")
+                    3 ->  {
                         furhat.gesture(Gestures.ExpressSad(duration = 1.0, strength = 1.0))
                         furhat.say("Oh no. You won.")
                     }
@@ -116,15 +117,15 @@ val Game : State = state(Interaction) {
             }
             4, 5 -> {
                 when (move) {
-                    0, 1 -> {
+                    1 -> {
                         furhat.gesture(Gestures.ExpressSad(duration = 1.0, strength = 1.0))
                         furhat.say("Oh no. You won.")
                     }
-                    2, 3 -> {
+                    2 -> {
                         furhat.gesture(Gestures.Surprise(duration = 1.0, strength = 0.5))
                         furhat.say("oh wow, I think I won.")
                     }
-                    4, 5 -> furhat.say("That would be draw.")
+                    3 -> furhat.say("That would be draw.")
                 }
             }
             else -> furhat.say("I don't think that is a legal move, lets call it a draw.")
@@ -132,10 +133,15 @@ val Game : State = state(Interaction) {
         delay(500)
         goto(Default)
     }
+
+    onUserLeave {
+        furhat.say ("Goodbye, hope to see you soon again.")
+        goto(Idle)
+    }
 }
 
 
-// Option for getting help with what hand gestures can be used.
+// Interaction for getting help with what hand gestures can be used with Furhat.
 val Help : State = state(Interaction) {
     onEntry {
         furhat.say("I understand mainly three hand gestures.")
@@ -158,5 +164,10 @@ val Help : State = state(Interaction) {
                 goto(Default)
             }
         }
+    }
+
+    onUserLeave {
+        furhat.say ("Goodbye, hope to see you soon again.")
+        goto(Idle)
     }
 }
