@@ -1,0 +1,4 @@
+00:58:41 [Skill] INFO  Skill:139 - Connecting to Furhat server on 192.168.1.162:1932
+00:58:42 [IisprojectSkill] INFO  IisprojectSkill:173 - Starting skill
+00:59:00 [IisprojectSkill] ERROR FlowControlRunner: 56 - Cannot call state sayState from instant trigger
+00:59:15 [IisprojectSkill] ERROR FlowControlRunner: 56 - Cannot call state sayState from instant trigger
