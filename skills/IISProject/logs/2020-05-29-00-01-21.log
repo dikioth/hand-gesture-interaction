@@ -1,8 +1,0 @@
-00:01:21 [Skill] INFO  Skill:139 - Connecting to Furhat server on 192.168.1.162:1932
-00:01:22 [IisprojectSkill] INFO  IisprojectSkill:173 - Starting skill
-00:01:56 [IisprojectSkill] WARN  Flow: 93 - Flow unknown unresponsive, 2019 ms since last event poll
-00:02:03 [IisprojectSkill] WARN  Flow: 93 - Flow unknown unresponsive, 1044 ms since last event poll
-00:02:16 [IisprojectSkill] WARN  Flow: 93 - Flow unknown unresponsive, 2041 ms since last event poll
-00:02:31 [IisprojectSkill] WARN  Flow: 93 - Flow unknown unresponsive, 3520 ms since last event poll
-00:02:48 [IisprojectSkill] WARN  Flow: 93 - Flow unknown unresponsive, 1507 ms since last event poll
-00:02:56 [IisprojectSkill] WARN  Flow: 93 - Flow unknown unresponsive, 5511 ms since last event poll
